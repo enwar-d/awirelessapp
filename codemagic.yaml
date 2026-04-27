@@ -1,0 +1,34 @@
+workflows:
+  android-workflow:
+    name: Android Build
+    max_build_duration: 60
+    environment:
+      node: 20.16.0
+    scripts:
+      - name: Install dependencies
+        script: npm install
+      - name: Build Android
+        script: eas build --platform android --profile preview --non-interactive
+    artifacts:
+      - build/**/*.apk
+      - build/**/*.aab
+
+  ios-workflow:
+    name: iOS Build
+    max_build_duration: 60
+    environment:
+      node: 20.16.0
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.enward.assurancewireless
+    scripts:
+      - name: Install dependencies
+        script: npm install
+      - name: Build iOS
+        script: eas build --platform ios --profile preview --non-interactive
+    artifacts:
+      - build/**/*.ipa
+    publishing:
+      email:
+        recipients:
+          - enwar.d@outlook.com
