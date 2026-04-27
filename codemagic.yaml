@@ -19,7 +19,7 @@ workflows:
     environment:
       node: 20.16.0
       ios_signing:
-        distribution_type: app_store
+        distribution_type: ad_hoc
         bundle_identifier: com.enward.assurancewireless
     scripts:
       - name: Install dependencies
